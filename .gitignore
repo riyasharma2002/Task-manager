@@ -1,0 +1,23 @@
+node_modules/
+.expo/
+.expo-shared/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.pem
+*.mobileprovision
+*.orig.*
+web-build/
+*.apk
+*.aab
+
+# macOS
+.DS_Store
+
+# Environment
+.env
+.env.local
+
