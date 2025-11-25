@@ -1,0 +1,29 @@
+services:
+  # PostgreSQL Database
+  - type: pserv
+    name: taskmanager-db
+    env: docker
+    plan: free
+    region: oregon
+    databases:
+      - name: taskmanager
+        user: taskmanager_user
+
+  # Backend API
+  - type: web
+    name: taskmanager-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: DATABASE_URL
+        fromDatabase:
+          name: taskmanager-db
+          property: connectionString
+    healthCheckPath: /health
